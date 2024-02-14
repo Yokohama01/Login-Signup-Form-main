@@ -1,25 +1,47 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-        <link rel="stylesheet" href="css/login.css">
-</head>
-<body>
-    
-<h1>Sign Up</h1>
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
 
-    <form action="/signup" method="post" >
-        <input placeholder="Name" name="name" type="text">
-        <br>
-        <input placeholder="Password" name="password" type="password">
-        <br>
-        <input class="sub" type="submit">
+    <h1>Sign Up</h1>
+    <div id="error"></div>
+
+    <form action="/signup" method="post" id="form">
+      <input placeholder="Name" name="name" type="text" id="name" />
+      <br />
+      <input
+        placeholder="Password"
+        name="password"
+        type="password"
+        id="password"
+      />
+      <br />
+      <input class="sub" type="submit" />
     </form>
 
-       <a href="/">Go back to login page</a>
+    <a href="/">Go back to login page</a>
 
-</body>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() { const name =
+      document.getElementById("name"); const password =
+      document.getElementById("password"); const form =
+      document.querySelector("form"); const errorElement =
+      document.getElementById("error"); form.addEventListener("submit", (e) => {
+      let messages = []; if (name.value === "" || name.value == null) {
+      messages.push("Name is Required"); } if (password.value.length <= 6) {
+      messages.push("Password must be longer than 6 characters"); } if
+      (password.value.length >= 20) { messages.push("Password must be less than
+      20 characters"); } if (password.value === "password") {
+      messages.push("Password cannot be 'password'"); } if (messages.length > 0)
+      { e.preventDefault(); errorElement.innerText = messages.join(", "); } });
+      });
+
+    </script>
+
+  </body>
 </html>
